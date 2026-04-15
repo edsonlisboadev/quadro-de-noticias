@@ -1,2 +1,3 @@
-# quadro-de-not-cias
+# quadro-de-noticias
 Trabalho Des. Web, Univille
+
