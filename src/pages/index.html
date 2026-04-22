@@ -1,74 +1,103 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>GEGE Notícias - Notícias de Anime</title>
     <link href="../styles/style.css" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    
+<script src="https://cdn.tailwindcss.com"></script>
+   <script>
+        tailwind.config = {
+            darkMode: 'class'
+        }
+    </script>   
+    <script>
+        
+    const savedTheme = localStorage.getItem('theme');
+
+    if (savedTheme === 'dark') {
+        document.documentElement.classList.add('dark');
+    } else if (savedTheme === 'light') {
+        document.documentElement.classList.remove('dark');
+    } else {
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+        }
+    }
+</script>
+
 </head>
-<body>
-    <main class="flex flex-col items-center">
-    <header class="bg-[#FFA700] shadow-lg w-full flex gap-5">
+<body class="bg-white text-black dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300">
+    <main class="flex flex-col items-center bg-white dark:bg-gray-900 transition-colors duration-300">
+    <header class="bg-[#FFA700] dark:bg-orange-700 shadow-lg w-full flex gap-5 transition-colors duration-300">
         <!-- Seção Logo e Título -->
-        <div class="flex items-center justify-between px-8 ">
+        <div class="flex items-center justify-between px-8 flex-1">
             <div class="flex items-center gap-4">
                 <img class="w-20 h-20 rounded-lg" src="../assets/img/logo_cabecalho.png" alt="Logo">
                 <div>
-                    <h1 class="text-4xl font-bold text-black">GEGE NOTÍCIAS</h1>
-                    <p class="text-black text-sm font-semibold">Notícias do mundo de anime</p>
+                    <h1 class="text-4xl font-bold text-black dark:text-white">GEGE NOTÍCIAS</h1>
+                    <p class="text-black dark:text-gray-200 text-sm font-semibold">Notícias do mundo de anime</p>
                 </div>
             </div>
-          
+            <!-- NOVA: Botão de tema dark/light -->
+            <button id="themeToggle" class="p-2 rounded-lg bg-white dark:bg-gray-800 text-black dark:text-yellow-400 hover:scale-110 transition-transform duration-200" title="Alternar tema">
+                <svg class="size-6 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <title id="themeIcon">sun</title>
+                    <path id="themePath" d="M12,18C8.68,18 6,15.31 6,12C6,8.68 8.68,6 12,6C15.32,6 18,8.68 18,12C18,15.31 15.32,18 12,18M20,12.5C20.83,12.5 21.5,11.83 21.5,11V13C21.5,12.17 20.83,11.83 20,12.5M3.5,13C4.33,12.5 5,11.83 5,11V13C5,11.83 4.33,12.17 3.5,13M12,3.5C11.17,4.33 11.83,5 13,5V1C11.83,1 11.17,2.67 12,3.5M12,20C13,21.83 13,23 13,23V19C11.83,19 11.17,21.17 12,20Z" />
+                </svg>
+            </button>
         </div>
 
         <!-- Menu Principal -->
-        <nav class="flex justify-around items-center px-8 py-3 rounded-sm mx-8 w-8/12">
+        <nav class="flex justify-around items-center px-8 py-3 rounded-sm mx-8 w-8/12 ">
     
-    <a href="/quadro-de-not-cias/src/pages/noticias.html" class="group flex cursor-pointer justify-center items-center gap-2 text-black hover:text-white transition duration-300 hover:scale-105">
-        <svg class="size-5 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-            <title>newspaper</title>
-            <path d="M20,11H4V8H20M20,15H13V13H20M20,19H13V17H20M11,19H4V13H11M20.33,4.67L18.67,3L17,4.67L15.33,3L13.67,4.67L12,3L10.33,4.67L8.67,3L7,4.67L5.33,3L3.67,4.67L2,3V19A2,2 0 0,0 4,21H20A2,2 0 0,0 22,19V3L20.33,4.67Z" />
-        </svg>
-        <span class="font-bold text-lg">Notícias</span>
-    </a>
-   
-    <a href="/quadro-de-not-cias/src/pages/noticias.html" class="group flex cursor-pointer justify-center items-center gap-2 text-black hover:text-white transition duration-300 hover:scale-105">
-        <svg class="size-5 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-            <title>information</title>
-            <path d="M13,9H11V7H13M13,17H11V11H13M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" />
-        </svg>
-        <span class="font-bold text-lg">Saiba Mais</span>
-    </a>
+            <!-- MODIFICADA: Links agora funcionam com scroll suave para seções -->
+            <a href="#noticias" class="group flex cursor-pointer justify-center items-center gap-2 text-black dark:text-white hover:text-gray-700 dark:hover:text-gray-300 transition duration-300 hover:scale-105">
+                <svg class="size-5 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <title>newspaper</title>
+                    <path d="M20,11H4V8H20M20,15H13V13H20M20,19H13V17H20M11,19H4V13H11M20.33,4.67L18.67,3L17,4.67L15.33,3L13.67,4.67L12,3L10.33,4.67L8.67,3L7,4.67L5.33,3L3.67,4.67L2,3V19A2,2 0 0,0 4,21H20A2,2 0 0,0 22,19V3L20.33,4.67Z" />
+                </svg>
+                <span class="font-bold text-lg">Notícias</span>
+            </a>
+       
+            <a href="#maisvistos" class="group flex cursor-pointer justify-center items-center gap-2 text-black dark:text-white hover:text-gray-700 dark:hover:text-gray-300 transition duration-300 hover:scale-105">
+                <svg class="size-5 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <title>fire-trending</title>
+                    <path d="M2,17.19C2,18.09 2.68,18.82 3.54,18.82C4.4,18.82 5.08,18.09 5.08,17.19C5.08,16.29 4.4,15.56 3.54,15.56C2.68,15.56 2,16.29 2,17.19M18.5,10.2L16.19,8.34C15.92,8.15 15.57,8.61 15.8,8.97L16.5,10C15.51,11.07 14.4,11.5 13.14,11.5C11.33,11.5 10,12.8 10,14.57C10,15.73 10.67,16.74 11.66,17.25L10.5,19.4C8.27,18.5 6.6,16.6 6.6,14.3C6.6,11.25 8.97,8.8 12,8.8C13.46,8.8 14.8,9.33 15.8,10.17L16.5,9.08C16.73,8.72 16.38,8.26 16.11,8.45L13.8,10.3C13.28,10.15 12.74,10.07 12.2,10.07C9.39,10.07 7.05,12.35 7.05,15.1C7.05,16.5 7.6,17.75 8.45,18.7L5.23,18.7C4.37,18.7 3.66,19.39 3.66,20.24C3.66,21.1 4.37,21.78 5.23,21.78H19.07C19.93,21.78 20.64,21.1 20.64,20.24C20.64,19.39 19.93,18.7 19.07,18.7H13.71L16.5,14.75C17.1,15.39 17.9,15.84 18.82,15.84C20.25,15.84 21.4,14.72 21.4,13.31C21.4,11.9 20.25,10.77 18.82,10.77C18.3,10.77 17.85,10.91 17.5,11.14L18.5,10.2Z" />
+                </svg>
+                <span class="font-bold text-lg">Mais Vistos</span>
+            </a>
 
-    <a href="../pages/temporada.html" class="group flex cursor-pointer justify-center items-center gap-2 text-black hover:text-white transition duration-300 hover:scale-105">
-        <svg class="size-5 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-            <title>help-box</title>
-            <path d="M11,18H13V16H11V18M12,6A4,4 0 0,0 8,10H10A2,2 0 0,1 12,8A2,2 0 0,1 14,10C14,12 11,11.75 11,15H13C13,12.75 16,12.5 16,10A4,4 0 0,0 12,6M5,3H19A2,2 0 0,1 21,5V19A2,2 0 0,1 19,21H5A2,2 0 0,1 3,19V5A2,2 0 0,1 5,3Z" />
-        </svg>
-        <span class="font-bold text-lg">Animes da Temporada</span>
-    </a>
-    
-    <a href="../pages/maisvistos.html" class="group flex cursor-pointer justify-center items-center gap-2 text-black hover:text-white transition duration-300 hover:scale-105">
-        <svg class="size-5 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-            <title>diamond-stone</title>
-            <path d="M16,9H19L14,16M10,9H14L12,17M5,9H8L10,16M15,4H17L19,7H16M11,4H13L14,7H10M7,4H9L8,7H5M6,2L2,8L12,22L22,8L18,2H6Z" />
-        </svg>
-        <span class="font-bold text-lg">Animes mais vistos</span>
-    </a>
 
-</nav>
+            <a href="#reviews" class="group flex cursor-pointer justify-center items-center gap-2 text-black dark:text-white hover:text-gray-700 dark:hover:text-gray-300 transition duration-300 hover:scale-105">
+                <svg class="size-5 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <title>star</title>
+                    <path d="M12,17.27L18.18,21L16.54,14.81L22,10.24L15.81,10L12,4L8.19,10L2,10.24L7.45,14.81L5.82,21L12,17.27Z" />
+                </svg>
+                <span class="font-bold text-lg">Reviews</span>
+            </a>
+
+            <a href="#sobre" class="group flex cursor-pointer justify-center items-center gap-2 text-black dark:text-white hover:text-gray-700 dark:hover:text-gray-300 transition duration-300 hover:scale-105">
+                <svg class="size-5 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <title>information</title>
+                    <path d="M13,9H11V7H13M13,17H11V11H13M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" />
+                </svg>
+                <span class="font-bold text-lg">Sobre</span>
+            </a>
+
+        </nav>
     </header>
 
-<!-- SEÇÃO HERO PRINCIPAL -->
-<section class="w-9/12 mt-5 flex justify-between">
-    <div class="w-[55%] hover:brightness-125 bg-[url(../assets/img/Demon_slayer.jpg)] rounded-lg h-100 flex flex-col justify-end">
+<!-- SEÇÃO HERO PRINCIPAL (com ID para navegação) -->
+<section id="noticias" class="w-9/12 mt-5 flex justify-between scroll-mt-20">
+    <div class="w-[55%] hover:brightness-125 dark:hover:brightness-75 bg-[url(../assets/img/Demon_slayer.jpg)] rounded-lg h-100 flex flex-col justify-end transition-all duration-300">
 
-        <div class="bg-linear-to-t from-black h-50 ">
+        <div class="bg-linear-to-t from-black dark:from-gray-950 h-50 ">
 
             <div class="flex gap-5 items-center pl-5 text-white">
-                <div class="bg-red-500 inline-block px-6 py-2 rounded-full">
-    Demon Slayer
+                <div class="bg-red-500 dark:bg-red-700 inline-block px-6 py-2 rounded-full">
+    <p>Demon Slayer</p>
 </div>
                 <p>Há 40 Minutos</p>
             </div>
@@ -82,63 +111,63 @@
     <div class="flex flex-col justify-between w-[43%]">
 
 <div class="w-full flex justify-between h-[32%]">
-    <div class="w-[40%] rounded-lg h-full bg-[url(../assets/img/one_piece2.jpg)] bg-cover bg-center hover:brightness-110"></div>
+    <div class="w-[40%] rounded-lg h-full bg-[url(../assets/img/one_piece2.jpg)] bg-cover bg-center hover:brightness-110 dark:hover:brightness-75 transition-all duration-300"></div>
 
-    <div class="w-[55%] flex flex-col justify-between">
+    <div class="w-[55%] flex flex-col justify-between dark:bg-gray-800 dark:rounded-r-lg p-3">
         <span class="flex gap-5 items-center">
-            <p class="text-black font-semibold">One Piece</p> 
-            <p class="text-gray-400 text-sm">10 Minutos Atrás</p>
+            <p class="text-black dark:text-white font-semibold">One Piece</p> 
+            <p class="text-gray-400 dark:text-gray-500 text-sm">10 Minutos Atrás</p>
         </span>
 
         <span>
-            <p class="text-sm">
+            <p class="text-sm dark:text-gray-300">
                 One Piece finalmente retorna com novos episódios e surpreende fãs com animação renovada.
             </p>
         </span>
 
-        <p class="text-gray-400 text-xs">
+        <p class="text-gray-400 dark:text-gray-500 text-xs">
             Veja os detalhes do novo arco...
         </p>
     </div>
 </div>
 
 <div class="w-full flex justify-between h-[32%]">
-    <div class="w-[40%] rounded-lg h-full bg-[url(../assets/img/Naruto.jpg)] bg-cover bg-center hover:brightness-110"></div>
+    <div class="w-[40%] rounded-lg h-full bg-[url(../assets/img/Naruto.jpg)] bg-cover bg-center hover:brightness-110 dark:hover:brightness-75 transition-all duration-300"></div>
 
-    <div class="w-[55%] flex flex-col justify-between">
+    <div class="w-[55%] flex flex-col justify-between dark:bg-gray-800 dark:rounded-r-lg p-3">
         <span class="flex gap-5 items-center">
-            <p class="text-black font-semibold">Naruto</p> 
-            <p class="text-gray-400 text-sm">25 Minutos Atrás</p>
+            <p class="text-black dark:text-white font-semibold">Naruto</p> 
+            <p class="text-gray-400 dark:text-gray-500 text-sm">25 Minutos Atrás</p>
         </span>
 
         <span>
-            <p class="text-sm">
+            <p class="text-sm dark:text-gray-300">
                 Naruto finalmente retorna com novos episódios e surpreende fãs com animação renovada.
             </p>
         </span>
 
-        <p class="text-gray-400 text-xs">
+        <p class="text-gray-400 dark:text-gray-500 text-xs">
             Veja os detalhes do novo arco...
         </p>
     </div>
 </div>
 
 <div class="w-full flex justify-between h-[32%]">
-    <div class="w-[40%] rounded-lg h-full bg-[url(../assets/img/Attack_on_titan.jpg)] bg-cover bg-center hover:brightness-110"></div>
+    <div class="w-[40%] rounded-lg h-full bg-[url(../assets/img/Attack_on_titan.jpg)] bg-cover bg-center hover:brightness-110 dark:hover:brightness-75 transition-all duration-300"></div>
 
-    <div class="w-[55%] flex flex-col justify-between">
+    <div class="w-[55%] flex flex-col justify-between dark:bg-gray-800 dark:rounded-r-lg p-3">
         <span class="flex gap-5 items-center">
-            <p class="text-black font-semibold">Attack on Titan</p> 
-            <p class="text-gray-400 text-sm">1 Hora Atrás</p>
+            <p class="text-black dark:text-white font-semibold">Attack on Titan</p> 
+            <p class="text-gray-400 dark:text-gray-500 text-sm">1 Hora Atrás</p>
         </span>
 
         <span>
-            <p class="text-sm">
+            <p class="text-sm dark:text-gray-300">
                 O final de Attack on Titan continua gerando debates intensos entre os fãs.
             </p>
         </span>
 
-        <p class="text-gray-400 text-xs">
+        <p class="text-gray-400 dark:text-gray-500 text-xs">
             Entenda o desfecho da história...
         </p>
     </div>
@@ -147,17 +176,17 @@
     </div>
 </section>
 
-<!-- SEÇÃO ÚLTIMAS NOTÍCIAS -->
-<section class="w-9/12 flex flex-col gap-4">
-    <h2 class="text-2xl font-bold text-black border-l-4 border-[#FFA700] pl-3">Últimas Notícias</h2>
+<!-- SEÇÃO MAIS LIDAS (com ID) -->
+<section id="maisvistos" class="w-9/12 flex flex-col gap-4 scroll-mt-20">
+    <h2 class="text-2xl font-bold text-black dark:text-white border-l-4 border-[#FFA700] pl-3">Mais Vistos</h2>
 
     <div class="flex justify-between gap-5">
 
         <!-- Card grande -->
-        <div class="w-[55%] hover:brightness-110 bg-[url(../assets/img/Jujutsu_kaisen.jpg)] bg-cover bg-center rounded-lg h-72 flex flex-col justify-end">
-            <div class="bg-linear-to-t from-black h-40 rounded-b-lg">
+        <div class="w-[55%] hover:brightness-110 dark:hover:brightness-75 bg-[url(../assets/img/Jujutsu_kaisen.jpg)] bg-cover bg-center rounded-lg h-72 flex flex-col justify-end transition-all duration-300">
+            <div class="bg-linear-to-t from-black dark:from-gray-950 h-40 rounded-b-lg">
                 <div class="flex gap-5 items-center pl-5 text-white">
-                    <div class="bg-[#FFA700] inline-block px-6 py-2 rounded-full text-black font-semibold text-sm">
+                    <div class="bg-[#FFA700] dark:bg-orange-600 inline-block px-6 py-2 rounded-full text-black dark:text-white font-semibold text-sm">
                         Jujutsu Kaisen
                     </div>
                     <p class="text-sm">Há 1 Hora</p>
@@ -172,44 +201,44 @@
         <div class="flex flex-col justify-between w-[43%]">
 
             <div class="w-full flex justify-between h-[32%]">
-                <div class="w-[40%] rounded-lg h-full bg-[url(../assets/img/Jujutsu_kaisen.jpg)] bg-cover bg-center hover:brightness-110"></div>
-                <div class="w-[55%] flex flex-col justify-between">
+                <div class="w-[40%] rounded-lg h-full bg-[url(../assets/img/Jujutsu_kaisen.jpg)] bg-cover bg-center hover:brightness-110 dark:hover:brightness-75 transition-all duration-300"></div>
+                <div class="w-[55%] flex flex-col justify-between dark:bg-gray-800 dark:rounded-r-lg p-3">
                     <span class="flex gap-5 items-center">
-                        <p class="text-black font-semibold">Jujutsu Kaisen</p>
-                        <p class="text-gray-400 text-sm">30 Minutos Atrás</p>
+                        <p class="text-black dark:text-white font-semibold">Jujutsu Kaisen</p>
+                        <p class="text-gray-400 dark:text-gray-500 text-sm">30 Minutos Atrás</p>
                     </span>
                     <span>
-                        <p class="text-sm">Jujutsu Kaisen TYBW parte 3 confirma data de estreia com trailer oficial impactante.</p>
+                        <p class="text-sm dark:text-gray-300">Jujutsu Kaisen TYBW parte 3 confirma data de estreia com trailer oficial impactante.</p>
                     </span>
-                    <p class="text-gray-400 text-xs">Veja o trailer completo...</p>
+                    <p class="text-gray-400 dark:text-gray-500 text-xs">Veja o trailer completo...</p>
                 </div>
             </div>
 
             <div class="w-full flex justify-between h-[32%]">
-                <div class="w-[40%] rounded-lg h-full bg-[url(../assets/img/Dragon_ball.jpg)] bg-cover bg-center hover:brightness-110"></div>
-                <div class="w-[55%] flex flex-col justify-between">
+                <div class="w-[40%] rounded-lg h-full bg-[url(../assets/img/Dragon_ball.jpg)] bg-cover bg-center hover:brightness-110 dark:hover:brightness-75 transition-all duration-300"></div>
+                <div class="w-[55%] flex flex-col justify-between dark:bg-gray-800 dark:rounded-r-lg p-3">
                     <span class="flex gap-5 items-center">
-                        <p class="text-black font-semibold">Dragon Ball</p>
-                        <p class="text-gray-400 text-sm">2 Horas Atrás</p>
+                        <p class="text-black dark:text-white font-semibold">Dragon Ball</p>
+                        <p class="text-gray-400 dark:text-gray-500 text-sm">2 Horas Atrás</p>
                     </span>
                     <span>
-                        <p class="text-sm">Dragon Ball Daima ganha novo arco e personagens exclusivos revelados.</p>
+                        <p class="text-sm dark:text-gray-300">Dragon Ball Daima ganha novo arco e personagens exclusivos revelados.</p>
                     </span>
-                    <p class="text-gray-400 text-xs">Saiba mais sobre o novo arco...</p>
+                    <p class="text-gray-400 dark:text-gray-500 text-xs">Saiba mais sobre o novo arco...</p>
                 </div>
             </div>
 
             <div class="w-full flex justify-between h-[32%]">
-                <div class="w-[40%] rounded-lg h-full bg-[url(../assets/img/Pokemon.jpg)] bg-cover bg-center hover:brightness-110"></div>
-                <div class="w-[55%] flex flex-col justify-between">
+                <div class="w-[40%] rounded-lg h-full bg-[url(../assets/img/Pokemon.jpg)] bg-cover bg-center hover:brightness-110 dark:hover:brightness-75 transition-all duration-300"></div>
+                <div class="w-[55%] flex flex-col justify-between dark:bg-gray-800 dark:rounded-r-lg p-3">
                     <span class="flex gap-5 items-center">
-                        <p class="text-black font-semibold">Pokémon</p>
-                        <p class="text-gray-400 text-sm">3 Horas Atrás</p>
+                        <p class="text-black dark:text-white font-semibold">Pokémon</p>
+                        <p class="text-gray-400 dark:text-gray-500 text-sm">3 Horas Atrás</p>
                     </span>
                     <span>
-                        <p class="text-sm">Pokémon anuncia nova série animada com visual inédito e personagens exclusivos revelados.</p>
+                        <p class="text-sm dark:text-gray-300">Pokémon anuncia nova série animada com visual inédito e personagens exclusivos revelados.</p>
                     </span>
-                    <p class="text-gray-400 text-xs">Confira os detalhes...</p>
+                    <p class="text-gray-400 dark:text-gray-500 text-xs">Confira os detalhes...</p>
                 </div>
             </div>
 
@@ -217,118 +246,175 @@
     </div>
 </section>
 
-<!-- SEÇÃO MAIS LIDAS -->
-<section class="w-9/12 flex flex-col gap-4">
-    <h2 class="text-2xl font-bold text-black border-l-4 border-[#FFA700] pl-3">Mais Lidas</h2>
+<!-- SEÇÃO DE REVIEWS -->
+<section id="reviews" class="w-9/12 flex flex-col gap-4 scroll-mt-20">
+    <h2 class="text-2xl font-bold text-black dark:text-white border-l-4 border-[#FFA700] pl-3">Reviews</h2>
 
     <div class="flex justify-between gap-5">
 
-        <div class="w-full flex justify-between h-40">
-            <div class="w-[18%] rounded-lg h-full bg-[url(../assets/img/Fullmetal.jpg)] bg-cover bg-center hover:brightness-110"></div>
-            <div class="w-[78%] flex flex-col justify-between">
-                <span class="flex gap-5 items-center">
-                    <div class="bg-red-500 px-4 py-1 rounded-full text-white text-sm font-semibold">#1</div>
-                    <p class="text-black font-semibold">Fullmetal Alchemist</p>
-                    <p class="text-gray-400 text-sm">Há 5 Horas</p>
-                </span>
-                <p class="text-sm">Fullmetal Alchemist: Brotherhood completa 15 anos e ganha exposição comemorativa especial.</p>
-                <p class="text-gray-400 text-xs">Leia a matéria completa...</p>
+        <div class="w-[55%] hover:brightness-110 dark:hover:brightness-75 bg-[url(../assets/img/Vinland_saga.jpg)] bg-cover bg-center rounded-lg h-72 flex flex-col justify-end transition-all duration-300" style="background-image: url('https://via.placeholder.com/600x400?text=Vinland+Saga');">
+            <div class="bg-linear-to-t from-black dark:from-gray-950 h-40 rounded-b-lg">
+                <div class="flex gap-5 items-center pl-5 text-white">
+                    <div class="bg-blue-500 dark:bg-blue-700 inline-block px-6 py-2 rounded-full text-white font-semibold text-sm">
+                        ⭐ 9.5/10
+                    </div>
+                    <p class="text-sm">Review Exclusivo</p>
+                </div>
+                <p class="pl-5 pt-3 w-5/6 text-white text-sm">
+                    Vinland Saga continua impressionando com narrativa envolvente, personagens complexos e animação de qualidade superior. Uma obra-prima do gênero histórico.
+                </p>
             </div>
         </div>
 
+        <div class="flex flex-col justify-between w-[43%]">
+
+            <div class="w-full flex justify-between h-[32%]">
+                <div class="w-[40%] rounded-lg h-full bg-cover bg-center hover:brightness-110 dark:hover:brightness-75 transition-all duration-300" style="background-image: url('https://via.placeholder.com/300x200?text=Solo+Leveling');"></div>
+                <div class="w-[55%] flex flex-col justify-between dark:bg-gray-800 dark:rounded-r-lg p-3">
+                    <span class="flex gap-3 items-center">
+                        <p class="text-black dark:text-white font-semibold text-sm">Solo Leveling</p>
+                        <span class="text-yellow-500 text-sm">⭐⭐⭐⭐⭐</span>
+                    </span>
+                    <span>
+                        <p class="text-sm dark:text-gray-300">Ação impecável, evolução de personagem bem feita e visual impressionante.</p>
+                    </span>
+                    <p class="text-gray-400 dark:text-gray-500 text-xs">Leia o review completo...</p>
+                </div>
+            </div>
+
+            <div class="w-full flex justify-between h-[32%]">
+                <div class="w-[40%] rounded-lg h-full bg-cover bg-center hover:brightness-110 dark:hover:brightness-75 transition-all duration-300" style="background-image: url('https://via.placeholder.com/300x200?text=Spy+Family');"></div>
+                <div class="w-[55%] flex flex-col justify-between dark:bg-gray-800 dark:rounded-r-lg p-3">
+                    <span class="flex gap-3 items-center">
+                        <p class="text-black dark:text-white font-semibold text-sm">Spy x Family</p>
+                        <span class="text-yellow-500 text-sm">⭐⭐⭐⭐⭐</span>
+                    </span>
+                    <span>
+                        <p class="text-sm dark:text-gray-300">Comédia perfeita com ação bem executada. Personagens adoráveis e química incrível.</p>
+                    </span>
+                    <p class="text-gray-400 dark:text-gray-500 text-xs">Leia o review...</p>
+                </div>
+            </div>
+
+            <div class="w-full flex justify-between h-[32%]">
+                <div class="w-[40%] rounded-lg h-full bg-cover bg-center hover:brightness-110 dark:hover:brightness-75 transition-all duration-300" style="background-image: url('https://via.placeholder.com/300x200?text=Bleach');"></div>
+                <div class="w-[55%] flex flex-col justify-between dark:bg-gray-800 dark:rounded-r-lg p-3">
+                    <span class="flex gap-3 items-center">
+                        <p class="text-black dark:text-white font-semibold text-sm">Bleach TYBW</p>
+                        <span class="text-yellow-500 text-sm">⭐⭐⭐⭐☆</span>
+                    </span>
+                    <span>
+                        <p class="text-sm dark:text-gray-300">Finalmente! Épico e repleto de momentos memoráveis. Pequenas falhas de ritmo.</p>
+                    </span>
+                    <p class="text-gray-400 dark:text-gray-500 text-xs">Leia o review...</p>
+                </div>
+            </div>
+
+        </div>
     </div>
+</section>
 
-    <!-- Grid de 4 cards menores -->
-    <div class="grid grid-cols-4 gap-5">
+<!-- SEÇÃO SOBRE -->
+<section id="sobre" class="w-9/12 flex flex-col gap-4 scroll-mt-20">
+    <h2 class="text-2xl font-bold text-black dark:text-white border-l-4 border-[#FFA700] pl-3">Sobre GEGE Notícias</h2>
 
-        <div class="flex flex-col gap-2">
-            <div class="w-full h-36 rounded-lg bg-[url(../assets/img/dr_stone.jpg)] bg-cover bg-center hover:brightness-110"></div>
-            <span class="flex gap-3 items-center">
-                <div class="bg-[#FFA700] px-3 py-1 rounded-full text-black text-xs font-semibold">#2</div>
-                <p class="text-black font-semibold text-sm">Dr. Stone</p>
-            </span>
-            <p class="text-xs text-gray-600">Dr. Stone Season 4 é confirmada com novo visual e previsão de estreia para 2025.</p>
-            <p class="text-gray-400 text-xs">Há 6 Horas</p>
-        </div>
-
-        <div class="flex flex-col gap-2">
-            <div class="w-full h-36 rounded-lg bg-[url(../assets/img/Death_note.jpg)] bg-cover bg-center hover:brightness-110"></div>
-            <span class="flex gap-3 items-center">
-                <div class="bg-[#FFA700] px-3 py-1 rounded-full text-black text-xs font-semibold">#3</div>
-                <p class="text-black font-semibold text-sm">Death Note</p>
-            </span>
-            <p class="text-xs text-gray-600">Death Note ganha série live-action internacional com produção surpresa anunciada.</p>
-            <p class="text-gray-400 text-xs">Há 7 Horas</p>
-        </div>
-
-        <div class="flex flex-col gap-2">
-            <div class="w-full h-36 rounded-lg bg-[url(../assets/img/Cowboy_bebop.jpg)] bg-cover bg-center hover:brightness-110"></div>
-            <span class="flex gap-3 items-center">
-                <div class="bg-[#FFA700] px-3 py-1 rounded-full text-black text-xs font-semibold">#4</div>
-                <p class="text-black font-semibold text-sm">Cowboy Bebop</p>
-            </span>
-            <p class="text-xs text-gray-600">Cowboy Bebop completa 25 anos e fãs celebram com eventos e relançamentos especiais.</p>
-            <p class="text-gray-400 text-xs">Há 8 Horas</p>
-        </div>
-
-        <div class="flex flex-col gap-2">
-            <div class="w-full h-36 rounded-lg bg-[url(../assets/img/ace.jpg)] bg-cover bg-center hover:brightness-110"></div>
-            <span class="flex gap-3 items-center">
-                <div class="bg-[#FFA700] px-3 py-1 rounded-full text-black text-xs font-semibold">#5</div>
-                <p class="text-black font-semibold text-sm">Ace of Diamond</p>
-            </span>
-            <p class="text-xs text-gray-600">Ace of Diamond anuncia nova temporada com o time do Seidou de volta às quadras em busca do campeonato nacional.</p>
-            <p class="text-gray-400 text-xs">Há 9 Horas</p>
-        </div>
-
+    <div class="bg-white dark:bg-gray-800 rounded-lg p-8 shadow-lg transition-colors duration-300">
+        <p class="text-black dark:text-white text-lg mb-4">
+            Bem-vindo à GEGE Notícias, o principal portal de notícias sobre anime e mangá do Brasil!
+        </p>
+        <p class="text-gray-700 dark:text-gray-300 mb-4">
+            Aqui você encontra cobertura diária de tudo que acontece no mundo dos animes, desde estreias de novas temporadas até reviews detalhados de suas série favoritas. Nossa missão é manter você informado sobre os últimos acontecimentos, tendências e descobertas do universo anime.
+        </p>
+        <p class="text-gray-700 dark:text-gray-300">
+            Explore nossas seções de notícias, confira os animes mais vistos do momento, leia nossas avaliações exclusivas e fique por dentro de tudo que rola no mundo dos quadrinhos animados. Bem-vindo à comunidade GEGE!
+        </p>
     </div>
 </section>
 
 <!-- FOOTER -->
-<footer class="bg-[#FFA700] shadow-lg w-full flex justify-around items-start px-8 py-8 mt-5 gap-10">
+<footer class="bg-[#FFA700] dark:bg-orange-900 shadow-lg w-full flex justify-around items-start px-8 py-8 mt-5 gap-10 transition-colors duration-300">
 
     <div class="flex flex-col gap-3">
         <div class="flex items-center gap-4">
             <img class="w-14 h-14 rounded-lg" src="../assets/img/logo_cabecalho.png" alt="Logo">
             <div>
-                <h2 class="text-2xl font-bold text-black">GEGE NOTÍCIAS</h2>
-                <p class="text-black text-xs font-semibold">Notícias do mundo de anime</p>
+                <h2 class="text-2xl font-bold text-black dark:text-white">GEGE NOTÍCIAS</h2>
+                <p class="text-black dark:text-gray-300 text-xs font-semibold">Notícias do mundo de anime</p>
             </div>
         </div>
-        <p class="text-sm text-black w-60">O principal portal de notícias sobre anime e mangá do Brasil. Cobertura diária, reviews e muito mais.</p>
+        <p class="text-sm text-black dark:text-gray-300 w-60">O principal portal de notícias sobre anime e mangá do Brasil. Cobertura diária, reviews e muito mais.</p>
     </div>
 
     <div class="flex flex-col gap-2">
-        <p class="font-bold text-black text-lg">Categorias</p>
-        <a href="#" class="text-sm text-black hover:text-white transition duration-200">Animes</a>
-        <a href="#" class="text-sm text-black hover:text-white transition duration-200">Mangás</a>
-        <a href="#" class="text-sm text-black hover:text-white transition duration-200">Filmes</a>
-        <a href="#" class="text-sm text-black hover:text-white transition duration-200">Reviews</a>
-        <a href="#" class="text-sm text-black hover:text-white transition duration-200">Rankings</a>
+        <p class="font-bold text-black dark:text-white text-lg">Categorias</p>
+        <a href="#noticias" class="text-sm text-black dark:text-gray-300 hover:text-gray-700 dark:hover:text-white transition duration-200">Animes</a>
+        <a href="#" class="text-sm text-black dark:text-gray-300 hover:text-gray-700 dark:hover:text-white transition duration-200">Mangás</a>
+        <a href="#" class="text-sm text-black dark:text-gray-300 hover:text-gray-700 dark:hover:text-white transition duration-200">Filmes</a>
+        <a href="#reviews" class="text-sm text-black dark:text-gray-300 hover:text-gray-700 dark:hover:text-white transition duration-200">Reviews</a>
+        <a href="#maisvistos" class="text-sm text-black dark:text-gray-300 hover:text-gray-700 dark:hover:text-white transition duration-200">Rankings</a>
     </div>
 
     <div class="flex flex-col gap-2">
-        <p class="font-bold text-black text-lg">Links</p>
-        <a href="#" class="text-sm text-black hover:text-white transition duration-200">Sobre Nós</a>
-        <a href="#" class="text-sm text-black hover:text-white transition duration-200">Contato</a>
-        <a href="#" class="text-sm text-black hover:text-white transition duration-200">Anuncie</a>
-        <a href="#" class="text-sm text-black hover:text-white transition duration-200">Privacidade</a>
+        <p class="font-bold text-black dark:text-white text-lg">Links</p>
+        <a href="#sobre" class="text-sm text-black dark:text-gray-300 hover:text-gray-700 dark:hover:text-white transition duration-200">Sobre Nós</a>
+        <a href="#" class="text-sm text-black dark:text-gray-300 hover:text-gray-700 dark:hover:text-white transition duration-200">Contato</a>
+        <a href="#" class="text-sm text-black dark:text-gray-300 hover:text-gray-700 dark:hover:text-white transition duration-200">Anuncie</a>
+        <a href="#" class="text-sm text-black dark:text-gray-300 hover:text-gray-700 dark:hover:text-white transition duration-200">Privacidade</a>
     </div>
 
     <div class="flex flex-col gap-2">
-        <p class="font-bold text-black text-lg">Redes Sociais</p>
-        <a href="#" class="text-sm text-black hover:text-white transition duration-200">Instagram</a>
-        <a href="#" class="text-sm text-black hover:text-white transition duration-200">Twitter / X</a>
-        <a href="#" class="text-sm text-black hover:text-white transition duration-200">YouTube</a>
-        <a href="#" class="text-sm text-black hover:text-white transition duration-200">Discord</a>
+        <p class="font-bold text-black dark:text-white text-lg">Redes Sociais</p>
+        <a href="#" class="text-sm text-black dark:text-gray-300 hover:text-gray-700 dark:hover:text-white transition duration-200">Instagram</a>
+        <a href="#" class="text-sm text-black dark:text-gray-300 hover:text-gray-700 dark:hover:text-white transition duration-200">Twitter / X</a>
+        <a href="#" class="text-sm text-black dark:text-gray-300 hover:text-gray-700 dark:hover:text-white transition duration-200">YouTube</a>
+        <a href="#" class="text-sm text-black dark:text-gray-300 hover:text-gray-700 dark:hover:text-white transition duration-200">Discord</a>
     </div>
 
 </footer>
 
-<div class="bg-black w-full text-center py-3">
+<div class="bg-black dark:bg-gray-950 w-full text-center py-3 transition-colors duration-300">
     <p class="text-white text-sm">© 2025 Gege Notícias — Todos os direitos reservados</p>
 </div>
 
 </main>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const html = document.documentElement;
+    const themeToggle = document.getElementById('themeToggle');
+    const themePath = document.getElementById('themePath');
+    const themeIcon = document.getElementById('themeIcon');
+
+    function updateIcon(isDark) {
+        if (isDark) {
+            themePath.setAttribute('d', 'M12,3C7.03,3 3,7.03 3,12C3,16.97 7.03,21 12,21C16.97,21 21,16.97 21,12C21,11.68 20.97,11.36 20.92,11.05C19.95,12.22 18.5,13 16.9,13C13.97,13 11.6,10.63 11.6,7.7C11.6,6.1 12.38,4.65 13.55,3.68C13.24,3.63 12.92,3.6 12.6,3.6C12.4,3.6 12.2,3.6 12,3Z');
+            themeIcon.textContent = 'moon';
+        } else {
+            themePath.setAttribute('d', 'M12,18C8.68,18 6,15.31 6,12C6,8.68 8.68,6 12,6C15.32,6 18,8.68 18,12C18,15.31 15.32,18 12,18Z');
+            themeIcon.textContent = 'sun';
+        }
+    }
+
+    function setTheme(isDark) {
+        if (isDark) {
+            html.classList.add('dark');
+            localStorage.setItem('theme', 'dark');
+        } else {
+            html.classList.remove('dark');
+            localStorage.setItem('theme', 'light');
+        }
+        updateIcon(isDark);
+    }
+
+    const isDark = html.classList.contains('dark');
+    updateIcon(isDark);
+
+    themeToggle.addEventListener('click', () => {
+        const isDarkNow = html.classList.contains('dark');
+        setTheme(!isDarkNow);
+    });
+});
+</script>
+
 </body>
 </html>
